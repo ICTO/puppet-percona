@@ -45,18 +45,13 @@ class percona::install {
   }
 
   # Installation of Percona's shared compatibility libraries
-  case $percona_version {
-    '5.5': {
-      package { $pkg_compat:
-        ensure => 'present',
-        before => Package[$pkg_common];
-      }
-    }
-    default: {
+  if $pkg_compat {
+    package { $pkg_compat:
+      ensure => 'present',
+      before => Package[$pkg_common];
     }
   }
 
-  alert("DEBUGPERCONA: pkg_server='${pkg_server}', pkg_client='${pkg_client}', pkg_compat='${pkg_compat}' pkg_common='${pkg_common}'")
   # Installation of Percona's shared libraries
   package { $pkg_common:
     ensure => 'present';
