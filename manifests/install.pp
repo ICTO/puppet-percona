@@ -56,6 +56,7 @@ class percona::install {
     }
   }
 
+  alert("DEBUGPERCONA: pkg_server='${pkg_server}', pkg_client='${pkg_client}', pkg_compat='${pkg_compat}' pkg_common='${pkg_common}'")
   # Installation of Percona's shared libraries
   package { $pkg_common:
     ensure => 'present';
