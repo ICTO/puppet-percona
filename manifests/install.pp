@@ -22,7 +22,7 @@ class percona::install {
           owner  => "root",
           group  => "root",
           mode   => "400",
-          content => template(percona/apt.preseed)
+          content => template("percona/apt.preseed")
         }
         Package[$pkg_server] {
           responsefile => "/root/.percona-server-server.preseed"
