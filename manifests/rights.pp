@@ -36,7 +36,8 @@ define percona::rights (
 ) {
 
   $config_file = $::percona::config_file
-
+  $debugpercona = mysql_password($password)
+  alert("DEBUGPERCONA::rights DB='$database', USER='$user', PASSWORD='$debugpercona', HOST='$host', PRIV='$priv', ENSURE='$ensure'")
   if $::mysql_uptime != 0 {
     if ! defined(Mysql_user["${user}@${host}"]) {
       mysql_user { "${user}@${host}":
