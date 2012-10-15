@@ -14,7 +14,6 @@ define percona::database (
   if $::mysql_uptime != 0 {
     mysql_database { $name:
       ensure        => $ensure,
-      character_set => $character_set,
       require       => File[$::percona::config_file],
     }
   }
