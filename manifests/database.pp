@@ -8,12 +8,13 @@
 #
 define percona::database (
   $ensure = present,
-  $character_set = 'latin1'
+  $characterset = 'latin1'
 ) {
 
   if $::mysql_uptime != 0 {
     mysql_database { $name:
       ensure        => $ensure,
+      characterset  => $characterset,
       require       => File[$::percona::config_file],
     }
   }
