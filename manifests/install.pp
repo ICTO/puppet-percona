@@ -15,6 +15,19 @@ class percona::install {
         'percona-toolkit',
         "percona-server-common-${pkg_version}"
       ]
+      if $percona_version == "5.5" {
+        # Preseed apt installation
+        file{ "/root/.percona-server-server.preseed":
+          ensure => "present",
+          owner  => "root",
+          group  => "root",
+          mode   => "400",
+          source => "puppet:///modules/percona/apt.preseed"
+        }
+        Package[$pkg_server] {
+          responsefile => "/root/.percona-server-server.preseed"
+        }
+      }
     }
 
     /(?i:redhat|centos)/: {
