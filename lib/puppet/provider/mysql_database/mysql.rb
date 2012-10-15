@@ -38,7 +38,10 @@ Puppet::Type.type(:mysql_database).provide(:mysql,
 	end
 
 	def create
-		mysqladmin  "create", @resource[:name], "--default-character-set=utf8"
+		#mysqladmin  "create", @resource[:name], "--default-character-set=utf8"
+		#mysql("mysql", '-NBe', "create database `#{@resource[:name]}` character set #{resource[:charset]}")
+		mysql("mysql", '-NBe', "create database `#{@resource[:name]}` character set utf8")
+		    
 	end
 	def destroy
 		mysqladmin "-f", "drop", @resource[:name]
