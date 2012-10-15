@@ -23,7 +23,7 @@ Puppet::Type.type(:mysql_database).provide(:mysql,
 	def query
 		result = {
 			:name => @resource[:name],
-      :ensure => :absent
+      			:ensure => :absent
 		}
 
 		cmd = "#{command(:mysql)} mysql -NBe 'show databases'"
@@ -38,7 +38,7 @@ Puppet::Type.type(:mysql_database).provide(:mysql,
 	end
 
 	def create
-		mysqladmin  "create", @resource[:name]
+		mysqladmin  "create", @resource[:name], "--default-character-set=".@resource[:character_set]
 	end
 	def destroy
 		mysqladmin "-f", "drop", @resource[:name]
