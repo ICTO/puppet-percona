@@ -31,7 +31,7 @@ define percona::rights (
   $user,
   $password,
   $host,
-  $priv = 'all'
+  $priv = 'all',
   $ensure = 'present'
 ) {
 
