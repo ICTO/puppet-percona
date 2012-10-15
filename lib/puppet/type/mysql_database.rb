@@ -7,8 +7,5 @@ Puppet::Type.newtype(:mysql_database) do
 		# TODO: only [[:alnum:]_] allowed
 	end
 	
-	newparam(:characterset) do
-		desc "The character set of the database."
-	end
 end
 

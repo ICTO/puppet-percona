@@ -23,7 +23,6 @@ Puppet::Type.type(:mysql_database).provide(:mysql,
 	def query
 		result = {
 			:name          => @resource[:name],
-			:characterset => @resource[:characterset],
       			:ensure        => :absent
 		}
 
@@ -39,7 +38,7 @@ Puppet::Type.type(:mysql_database).provide(:mysql,
 	end
 
 	def create
-		mysqladmin  "create", @resource[:name], "--default-character-set=#{resource[:characterset]}"
+		mysqladmin  "create", @resource[:name], "--default-character-set=utf-8"
 	end
 	def destroy
 		mysqladmin "-f", "drop", @resource[:name]
