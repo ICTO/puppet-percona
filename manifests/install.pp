@@ -31,7 +31,7 @@ class percona::install {
         "Percona-Server-shared-${pkg_version}",
         'percona-toolkit'
       ]
-        
+
       # Installation of Percona's shared compatibility libraries
       case $percona_version {
         '5.5': {
@@ -62,7 +62,7 @@ class percona::install {
   }
 
   # Installation of the Percona client
-  if $::percona::client {
+  if ($::percona::client or $::percona::server) {
     package { $pkg_client:
       ensure  => 'present',
       require => Package[$pkg_common],
