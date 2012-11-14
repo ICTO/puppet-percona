@@ -56,6 +56,14 @@ class percona::install {
     ],
   }
 
+  # Installation of Percona's shared compatibility libraries
+  if $pkg_compat {
+    package { $pkg_compat:
+      ensure => 'present',
+      before => Package[$pkg_common];
+    }
+  }
+
   # Installation of Percona's shared libraries
   package { $pkg_common:
     ensure => 'present';

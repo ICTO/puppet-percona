@@ -7,13 +7,13 @@
 # $ensure:: defaults to present
 #
 define percona::database (
-  $ensure = present,
+  $ensure = present
 ) {
 
   if $::mysql_uptime != 0 {
     mysql_database { $name:
-      ensure  => $ensure,
-      require => File[$::percona::config_file],
+      ensure        => $ensure,
+      require       => File[$::percona::config_file],
     }
   }
 }
