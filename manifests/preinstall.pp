@@ -6,8 +6,9 @@ class percona::preinstall {
     case $::operatingsystem {
       /(?i:debian|ubuntu)/: {
         apt::key { 'CD2EFD2A':
-          ensure => present,
-          notify => Exec['apt-get update'],
+          ensure    => present,
+          notify    => Exec['apt-get update'],
+          keyserver => "hkp://keys.gnupg.net"
         }
 
         apt::sources_list { 'percona':
