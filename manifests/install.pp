@@ -35,9 +35,11 @@ class percona::install {
       # Installation of Percona's shared compatibility libraries
       case $percona_version {
         '5.5': {
-          package { $pkg_compat:
-            ensure => 'present',
-            before => Package[$pkg_common];
+          if $::operatingsystem =~ /(?i:redhat|centos)/ {
+            package { $pkg_compat:
+              ensure => 'present',
+              before => Package[$pkg_common];
+            }
           }
         }
         default: {
